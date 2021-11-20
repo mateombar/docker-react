@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run -e CI=true mateombar/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "Docker react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-427717181903"
+  bucket_path: "Docker react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_ACCESS_KEY"
+
